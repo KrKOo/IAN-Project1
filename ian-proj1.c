@@ -76,6 +76,14 @@ void printSegmentSections(Elf *elf, const GElf_Phdr *phdr)
 	}
 }
 
+void printHeader()
+{
+	printf("Segment\t");
+	printf("Type\t\t");
+	printf("Perm\t");
+	printf("Sections\n");
+}
+
 void printSegmentInfo(Elf *elf, int id, const GElf_Phdr *phdr)
 {
 	printf("%02d", id);
@@ -118,6 +126,7 @@ void main(int argc, char **argv)
 		errx(EXIT_FAILURE, "elf_getphdrnum() failed: %s.", elf_errmsg(-1));
 	}
 
+	printHeader();
 	for (int i = 0; i < phdrCount; i++)
 	{
 		GElf_Phdr phdr;
